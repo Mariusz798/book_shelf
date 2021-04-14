@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+        {% for book in object_list %}
+            <li>{{ book }} <b><a href="/author/{{ book.author.id }}/"> {{ book.author.last_name }}</a></b></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

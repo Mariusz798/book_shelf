@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table border="1">
+    <form method="post">
+        {% csrf_token %}
+        <tr><td>Imie</td><td><input type="text" name="first_name"></td></tr>
+        <tr><td>Nazwisko</td><td><input type="text" name="last_name"></td></tr>
+        <tr><td>Rok</td><td><input type="text" name="year"></td></tr>
+        <tr><td colspan="2"><input type="submit"></td></tr>
+    </form>
+    </table>
+
+{% endblock %}
