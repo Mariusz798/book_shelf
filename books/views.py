@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from books.models import Author, Book
+from books.models import Author, Book, Genre
 
 
 def index(request):
@@ -18,8 +18,12 @@ def detail_book_view(request, id):
 
 
 def authors_view(request):
-    authors = Author.objects.all()
-    return render(request, 'object_list.html', {'object_list': authors})
+    # authors = Author.objects.all()
+    nazwisko = request.GET.get('nazwisko', '') #woj
+    imie = request.GET.get('imie', '')
+    authors = Author.objects.filter(last_name__icontains=nazwisko)
+    authors = authors.filter(first_name__icontains=imie)
+    return render(request, 'autor_list.html', {'object_list': authors})
 
 
 def books_view(request):
@@ -40,11 +44,14 @@ def author_add_view(request):
 
 def book_add_view(request):
     authors = Author.objects.all()
+    genres = Genre.objects.all()
     if request.method == 'GET':
-        return render(request, 'add_book.html', {'jajko':authors})
+        return render(request, 'add_book.html', {'authors':authors, 'genres':genres})
     title = request.POST.get('title')
     author_id = request.POST.get('author_id')
     autor = Author.objects.get(id=author_id)
     b = Book(title=title, author=autor)
     b.save()
-    return render(request, 'add_book.html', {'authors': authors})
+    gatunki = request.POST.getlist('genre')
+    b.categories.set(gatunki)
+    return render(request, 'add_book.html', {'authors': authors,  'genres':genres})

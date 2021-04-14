@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+    <p>
+    <form>
+        <input type="text" name="imie" placeholder="imie">
+        <input type="text" name="nazwisko" placeholder="nazwisko">
+    <input type="submit" value="szukaj">
+    </form>
+    </p>
     <ul>
         {% for object in object_list %}
             <li>{{ object }}</li>

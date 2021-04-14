@@ -3,15 +3,19 @@
 <br>
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="title"><br>
-        <select name="author_id"><br>
-            {% for author in jajko %}
+        <p><input type="text" name="title"></p>
+        <p><select name="author_id"><br>
+            {% for author in authors %}
                 <option value="{{ author.id }}"> {{ author }}</option>
             {% endfor %}
-        </select>
-    <input type="submit" ><br>
-
-
+        </select></p>
+    {% for g in genres %}
+    <p>
+        <input type="checkbox" name="genre" value="{{ g.id }}"> {{ g }}
+    </p>
+    {% empty %}
+        nie ma żadnych elementów w bazie
+    {% endfor %}
+    <p><input type="submit" ><p>
     </form>
-
 {% endblock %}

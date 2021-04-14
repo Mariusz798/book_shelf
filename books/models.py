@@ -10,6 +10,10 @@ class Author(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+class Biography(models.Model):
+    author = models.OneToOneField(Author, on_delete=models.CASCADE)
+    text = models.TextField()
+
 class Genre(models.Model):
     name = models.CharField(max_length=50)
 
