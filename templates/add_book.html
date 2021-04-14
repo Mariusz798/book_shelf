@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="title"><br>
+        <select name="author_id"><br>
+            {% for author in jajko %}
+                <option value="{{ author.id }}"> {{ author }}</option>
+            {% endfor %}
+        </select>
+    <input type="submit" ><br>
+
+
+    </form>
+
+{% endblock %}

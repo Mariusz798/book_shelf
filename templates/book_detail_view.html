@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    {{ book.title }}
+    {{ book.author }}
+    <ul>
+    {% for genre in book.categories.all %}
+    <li>{{ genre }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

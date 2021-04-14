@@ -12,6 +12,10 @@ def detail_author_view(request, id):
     author = Author.objects.get(pk=id)
     return render(request, 'author_detail_view.html', {'author': author})
 
+def detail_book_view(request, id):
+    book = Book.objects.get(pk=id)
+    return render(request, 'book_detail_view.html', {'book': book})
+
 
 def authors_view(request):
     authors = Author.objects.all()
@@ -32,3 +36,15 @@ def author_add_view(request):
     a = Author(first_name=first_name, last_name=last_name, year=year)
     a.save()
     return render(request, 'add_author.html')
+
+
+def book_add_view(request):
+    authors = Author.objects.all()
+    if request.method == 'GET':
+        return render(request, 'add_book.html', {'jajko':authors})
+    title = request.POST.get('title')
+    author_id = request.POST.get('author_id')
+    autor = Author.objects.get(id=author_id)
+    b = Book(title=title, author=autor)
+    b.save()
+    return render(request, 'add_book.html', {'authors': authors})
