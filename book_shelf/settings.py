@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'book_shelf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'books_2',
+        'NAME': 'books',
         'USER' : 'postgres',
-        'PASSWORD': 'vetjopoco',
+        'PASSWORD': 'admin',
         'HOST': 'localhost'
     }
 }

@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% csrf_token %}
+    Zmienna sesyjna <b>{{ key }}</b> została ustwaiona na wartość <b>{{ value }}</b>.
+{% endblock %}

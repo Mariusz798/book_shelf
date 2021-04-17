@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <p>
+    <form method="POST">
+    {% csrf_token %}
+        <input type="text" name="title" placeholder="title">
+        <p><select name="author_id"><br>
+            {% for author in authors %}
+                <option value="{{ author.id }}"> {{ author }}</option>
+            {% endfor %}
+        </select></p>
+    <input type="submit" value="szukaj">
+    </form>
+    </p>
+
     <ul>
         {% for book in object_list %}
             <li>{{ book }} <b><a href="/author/{{ book.author.id }}/"> {{ book.author.last_name }}</a></b></li>
